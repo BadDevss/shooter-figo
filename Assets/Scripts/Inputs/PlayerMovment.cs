@@ -8,7 +8,9 @@ public class PlayerMovment : MonoBehaviour
 
     private Rigidbody _playerRigidbody;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float movmentSpeed;
+
+    [SerializeField] private float forwardSpeed = 5f;
 
     [SerializeField] private float minVerticalOffset = -3.064649f;
 
@@ -30,16 +32,17 @@ public class PlayerMovment : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         Vector3 fixedDir = (transform.right * _playerInputs.MoveDirection.x + transform.up * _playerInputs.MoveDirection.y).normalized;
 
-        if (fixedDir.x > 0.1f && fixedDir.x != 0f)
+        fixedDir.z = forwardSpeed;
+
+        if (fixedDir.x > 0.5f && fixedDir.x != 0f)
         {
             Vector3 angles = spaceShip.localEulerAngles;
             angles.z = horizzontalRotation;
             spaceShip.localEulerAngles = -angles;
         }
-        else if (fixedDir.x < 0.1f && fixedDir.x != 0f)
+        else if (fixedDir.x < -0.5f && fixedDir.x != 0f)
         {
             Vector3 angles = spaceShip.localEulerAngles;
             angles.z = horizzontalRotation;
@@ -65,19 +68,14 @@ public class PlayerMovment : MonoBehaviour
         if (transform.position.y >= maxVerticalOffset && fixedDir.y > 0.1f)
         {
             fixedDir.y = 0f;
-            fixedDir.z = 0f;
         }
 
         if (transform.position.y <= minVerticalOffset && fixedDir.y < 0.1f)
         {
             fixedDir.y = 0f;
-            fixedDir.z = 0f;
         }
 
-        
-
-        _playerRigidbody.velocity = fixedDir * speed;
-        //_playerRigidbody.velocity = _playerInputs.MoveDirection * speed;
+        _playerRigidbody.velocity = fixedDir * movmentSpeed;
     }
 
 }

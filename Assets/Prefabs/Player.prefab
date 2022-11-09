@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 581342261}
   - component: {fileID: 581342262}
   - component: {fileID: 581342263}
+  - component: {fileID: 24013176}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -189,6 +190,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &24013176
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581342260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.49, y: 0.21, z: 0.2}
+  m_Center: {x: 0, y: -0.09, z: 0}
 --- !u!1 &926051974
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +386,7 @@ GameObject:
   - component: {fileID: 1320948789}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,7 +399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7448562453232998066}
   m_LocalRotation: {x: 0.1564345, y: 0, z: 0, w: 0.98768836}
-  m_LocalPosition: {x: 1.25, y: -3.064649, z: -12.26}
+  m_LocalPosition: {x: 0, y: -3.064649, z: 0}
   m_LocalScale: {x: 1, y: 0.9999998, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -467,7 +481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef319ce16080d34d98b3b771628c050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  movmentSpeed: 10
+  forwardSpeed: 2
   minVerticalOffset: -3.064649
   maxVerticalOffset: 1.500422
   minHorizzontalOffset: -6.45
