@@ -200,9 +200,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 518043075, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 581342260, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 926051974, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272033597, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1320948788, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
       propertyPath: forwardSpeed
