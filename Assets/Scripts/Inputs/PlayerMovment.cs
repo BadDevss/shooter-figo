@@ -24,10 +24,13 @@ public class PlayerMovment : MonoBehaviour
 
     [SerializeField] private Transform spaceShip;
 
+    private Animator _spaceShiptAnim;
+
     private void Awake()
     {
         _playerInputs = GetComponent<IInput>();
         _playerRigidbody = GetComponent<Rigidbody>();
+        _spaceShiptAnim = GetComponentInChildren<Animator>();
     }
 
     private void FixedUpdate()
@@ -54,6 +57,8 @@ public class PlayerMovment : MonoBehaviour
             angles.z = 0f;
             spaceShip.localEulerAngles = angles;
         }
+
+        _spaceShiptAnim.SetFloat("yDir", fixedDir.y);
 
         if (transform.position.x >= maxHorizzontalffset && fixedDir.x > 0.1f)
         {

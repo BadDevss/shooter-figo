@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdlleSpaceShip
+  m_Name: MoveDown
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 507a1231f2e9baf42a7976f139cd4366, type: 3}
+      value: {fileID: 21300000, guid: 3ba7af91a77f2f143b00a52c6b19477f, type: 3}
     - time: 0.033333335
-      value: {fileID: 21300000, guid: 247b3ab327229824189dfffc5361ef40, type: 3}
+      value: {fileID: 21300000, guid: 974b8d702847cb0418516aa2ce1b8f3f, type: 3}
     - time: 0.06666667
-      value: {fileID: 21300000, guid: dda90357a63fdad4c8f30560685ac426, type: 3}
+      value: {fileID: 21300000, guid: 1f623dd4e0dbdf149888c45ff2610c00, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: 1b05fa6c0a5d0d244b46539bfa6d0047, type: 3}
+      value: {fileID: 21300000, guid: 88ef9bcdd9ff69b4e8218c6f08be2e3c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,10 +46,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 507a1231f2e9baf42a7976f139cd4366, type: 3}
-    - {fileID: 21300000, guid: 247b3ab327229824189dfffc5361ef40, type: 3}
-    - {fileID: 21300000, guid: dda90357a63fdad4c8f30560685ac426, type: 3}
-    - {fileID: 21300000, guid: 1b05fa6c0a5d0d244b46539bfa6d0047, type: 3}
+    - {fileID: 21300000, guid: 3ba7af91a77f2f143b00a52c6b19477f, type: 3}
+    - {fileID: 21300000, guid: 974b8d702847cb0418516aa2ce1b8f3f, type: 3}
+    - {fileID: 21300000, guid: 1f623dd4e0dbdf149888c45ff2610c00, type: 3}
+    - {fileID: 21300000, guid: 88ef9bcdd9ff69b4e8218c6f08be2e3c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
