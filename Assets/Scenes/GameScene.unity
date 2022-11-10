@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: shootingAnimator
       value: 
       objectReference: {fileID: 92288920}
+    - target: {fileID: 1320948788, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+      propertyPath: minVerticalOffset
+      value: -3.75
+      objectReference: {fileID: 0}
     - target: {fileID: 7448562453232998066, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
       propertyPath: m_Name
       value: Player
@@ -235,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7448562453232998079, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.064649
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 7448562453232998079, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
       propertyPath: m_LocalPosition.z

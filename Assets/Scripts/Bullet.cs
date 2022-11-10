@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private float bulletSpeed = 7f;
 
+    [SerializeField] private float autoDestroyTimer = 2f;
+
     public int Damage { get; set; }
 
     private void Awake()
@@ -18,6 +20,12 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         _bulletRb.velocity = Vector3.forward * bulletSpeed;
+        Invoke("AutoDestroy", autoDestroyTimer);
+    }
+
+    private void AutoDestroy()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,6 +36,7 @@ public class Bullet : MonoBehaviour
         {
             //the bullet hit something that can take damage
             damagedObject.TakeDamage(Damage);
+            Destroy(gameObject);
         }
     }
 }
