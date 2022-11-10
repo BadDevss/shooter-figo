@@ -18,13 +18,35 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject rightEnemy;
 
     [SerializeField] private float spawnRate = 3f;
-    [SerializeField] private Transform playerTransform;
+    private Transform _spaceShipTransform;
+    private Transform _playerTransform;
     private float _elapsedSpawnTime = 0f;
 
     private int _lastColumnIndex = -1;
+    private float _zOffSet;
+
+    private void Awake()
+    {
+        _spaceShipTransform = GameObject.FindGameObjectWithTag("SpaceShip").transform;      
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void Start()
+    {
+        _zOffSet = Mathf.Abs((_spaceShipTransform.position - transform.position).z);
+    }
 
     private void Update()
     {
+        //Vector3 oldPos = transform.position;
+        //oldPos.x = 0f;
+        //oldPos.y = 0f;
+        //transform.position = oldPos;
+
+        Vector3 oldPos = transform.position;
+        oldPos.z = _playerTransform.position.z + _zOffSet;
+        transform.position = oldPos;
+
         _elapsedSpawnTime -= Time.deltaTime;
 
         if(_elapsedSpawnTime <= 0f)
@@ -81,7 +103,11 @@ public class Spawner : MonoBehaviour
     {
         Transform randomPoint = possiblePoints[Random.Range(0, possiblePoints.Length)];
         GameObject enemySpawned = Instantiate(enemy, randomPoint.position, Quaternion.identity);
-        enemySpawned.GetComponent<BaseEnemy>().Speed = playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+        //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+
+        enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+
+        //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
         //enemySpawned.transform.SetParent(playerTransform);
     }
 
@@ -90,7 +116,11 @@ public class Spawner : MonoBehaviour
         Transform randomPoint = possiblePoints[Random.Range(0, possiblePoints.Length)];
         GameObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
         GameObject enemySpawned = Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
-        enemySpawned.GetComponent<BaseEnemy>().Speed = playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+        //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+
+        enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+
+        //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
         //enemySpawned.transform.SetParent(playerTransform);
     }
 
