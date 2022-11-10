@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &92288920 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 92288920, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+  m_PrefabInstance: {fileID: 1150998004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &720840006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,54 +205,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 518043075, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 92288921, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 581342260, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 92288921, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 926051974, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 1186595187, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+      propertyPath: fireRate
+      value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 926051976, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 926051976, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 53.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1272033597, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1272033599, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 1272033599, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 53.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320948788, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: forwardSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320948788, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: maxHorizzontalffset
-      value: 7.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320948788, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: minHorizzontalOffset
-      value: -7.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7448562453232998064, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
-      propertyPath: far clip plane
-      value: 47
-      objectReference: {fileID: 0}
+    - target: {fileID: 1186595187, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
+      propertyPath: shootingAnimator
+      value: 
+      objectReference: {fileID: 92288920}
     - target: {fileID: 7448562453232998066, guid: 42d20b53ac2ef1b2aa896b2cb15419bd, type: 3}
       propertyPath: m_Name
       value: Player

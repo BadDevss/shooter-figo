@@ -35,6 +35,15 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""b18dcce2-4b4f-4b26-8978-146feb28cebd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -180,6 +189,17 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""action"": ""Movment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""460abce4-42e0-46a3-995c-071ef131fb8d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -189,6 +209,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movment = m_Player.FindAction("Movment", throwIfNotFound: true);
+        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,11 +270,13 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movment;
+    private readonly InputAction m_Player_Attack;
     public struct PlayerActions
     {
         private @Inputs m_Wrapper;
         public PlayerActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movment => m_Wrapper.m_Player_Movment;
+        public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -266,6 +289,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Movment.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovment;
                 @Movment.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovment;
                 @Movment.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovment;
+                @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -273,6 +299,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Movment.started += instance.OnMovment;
                 @Movment.performed += instance.OnMovment;
                 @Movment.canceled += instance.OnMovment;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -280,5 +309,6 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovment(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

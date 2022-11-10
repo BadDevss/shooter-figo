@@ -8,6 +8,8 @@ public class PlayerInputs : MonoBehaviour, IInput
 
     public Vector2 MoveDirection { get; private set; }
 
+    public bool IsFiring { get ; private set; }
+
     private void Awake()
     {
         _inputActions = new Inputs();
@@ -17,17 +19,17 @@ public class PlayerInputs : MonoBehaviour, IInput
     {
         _inputActions.Player.Movment.performed += ctx =>
         {
-
-            //Vector2 input = ctx.ReadValue<Vector2>().normalized;
-
-            //Vector3 fixedInput = input;
-
-            //fixedInput.z = input.y * Mathf.Sin(Mathf.Deg2Rad * 18f) * Mathf.Rad2Deg;
-
-            //MoveDirection = fixedInput.normalized;
-
-            //Debug.Log(fixedInput);
             MoveDirection = ctx.ReadValue<Vector2>().normalized;
+        };
+
+        _inputActions.Player.Attack.performed += ctx =>
+        {
+            IsFiring = true;
+        };
+
+        _inputActions.Player.Attack.canceled += ctx =>
+        {
+            IsFiring = false;
         };
     }
 

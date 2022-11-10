@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IInput
+public interface ITakeDamage 
 {
-   public Vector2 MoveDirection { get; }
+    public void TakeDamage(int damage);
 }
