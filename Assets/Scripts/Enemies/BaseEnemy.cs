@@ -3,29 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BaseEnemy : MonoBehaviour
+public class BaseEnemy : MonoBehaviour, ITakeDamage
 {
     private Rigidbody _enemyRb;
 
     [SerializeField] private int damage;
 
+    [SerializeField] private int health;
+
+    [SerializeField] private GameObject[] explosions;
+
     public float Speed { get; set; }
 
-    //[SerializeField] private float spped = 1f;
-    //private float _elapsedTime = 0f;
 
-    //public Rigidbody PlayerRb { get; set; }
-
-    //[SerializeField] private float speed;
-
-    private Transform _playerTransform;
-    private Transform _colliderTransform;
+    //private Transform _playerTransform;
+    //private Transform _colliderTransform;
 
     private void Awake()
     {
         _enemyRb = GetComponent<Rigidbody>();
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        _colliderTransform = GetComponentInChildren<Transform>();
+        //_playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        //_colliderTransform = GetComponentInChildren<Transform>();
     }
 
     private void Start()
@@ -33,39 +31,33 @@ public class BaseEnemy : MonoBehaviour
         _enemyRb.velocity = Vector3.forward * Speed;
     }
 
-    //private void Update()
-    //{
-    //    Vector3 playerVelocity = PlayerRb.velocity;
-    //    _enemyRb.velocity = new Vector3(playerVelocity.x, playerVelocity.y, Speed);
-    //}
-
-    private void Update()
-    {
-        //_elapsedTime -= Time.deltaTime;
-
-        //if(_elapsedTime <= 0f)
-        //{
-        //    Vector3 scale = transform.localScale;
-        //    scale.x += 1f;
-        //    scale.y += 1f;
-        //    transform.localScale = scale;
-
-        //    if (transform.localScale.x == 10f)
-        //        Destroy(gameObject);
-
-        //    _elapsedTime = spped;
-        //}
-
-
-    }
-
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    //collision.gameObject.GetComponent<ITakeDamage>().TakeDamage(damage);
+        //    Instantiate(explosions[Random.Range(0, 2)], transform.position, Quaternion.identity);
+        //    Destroy(gameObject);
+        //}
+    }
+
+    //protected virtual void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        //collision.gameObject.GetComponent<ITakeDamage>().TakeDamage(damage);
+    //        Instantiate(explosions[Random.Range(0, 2)], transform.position, Quaternion.identity);
+    //        Destroy(gameObject);
+    //    }
+    //}
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
         {
-            //collision.gameObject.GetComponent<ITakeDamage>().TakeDamage(damage);
+            Instantiate(explosions[Random.Range(0, 2)], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
-
 }

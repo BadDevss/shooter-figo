@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2537255692354980692}
-  m_LocalRotation: {x: 0.18480907, y: 0, z: 0, w: 0.98277444}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.05, z: 0.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8492644660128610916}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 21.3, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3511653656057227661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 5}
-  m_Center: {x: 0, y: 0, z: -2.41}
+  m_Size: {x: 2, y: 2, z: 7}
+  m_Center: {x: 0, y: 0.25, z: -3.7}
 --- !u!114 &867459261196401793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +59,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 5931033042079056946}
+  explosions:
+  - {fileID: 8063377753990001475, guid: 1a5333e962b391b44b120d23ef7fb50d, type: 3}
+  - {fileID: 6828698479187233956, guid: 14147e6466432b043b1936cb263a433b, type: 3}
 --- !u!1 &8238003760966862284
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,8 +106,9 @@ GameObject:
   - component: {fileID: 8492644660128610914}
   - component: {fileID: 3818087894813670421}
   - component: {fileID: 3719795404356622736}
+  - component: {fileID: 488874375276826883}
   m_Layer: 0
-  m_Name: FrontalEnS
+  m_Name: FrontalEnFixed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,9 +169,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 588790149
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fcf620a837a250749a26ec7914920c25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -212,6 +216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  health: 10
+  explosions:
+  - {fileID: 8063377753990001475, guid: 1a5333e962b391b44b120d23ef7fb50d, type: 3}
+  - {fileID: 6828698479187233956, guid: 14147e6466432b043b1936cb263a433b, type: 3}
 --- !u!54 &3719795404356622736
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -228,3 +236,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &488874375276826883
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492644660128610913}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

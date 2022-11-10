@@ -9,11 +9,13 @@ public class BaseShoot : ScriptableObject
 
     [SerializeField] private int bulletsToFire;
 
+    [SerializeField] private int bulletDamage;
+
     //[SerializeField] private Transform[] firePoints;
 
     //public Transform[] FirePoints { get; set; }
 
-    public int BulletDamage { get; set; }
+    //public int BulletDamage { get; set; }
     public virtual void Fire(Transform[] firePoints)
     {
         if (bulletsToFire >= firePoints.Length)
@@ -21,12 +23,7 @@ public class BaseShoot : ScriptableObject
 
         for(int i = 0; i < bulletsToFire; i++)
         {
-            Instantiate(bullet, firePoints[i].position, Quaternion.identity).Damage = BulletDamage;
+            Instantiate(bullet, firePoints[i].position, Quaternion.identity).Damage = bulletDamage;
         }
-
-        //foreach(Transform firePoint in firePoints)
-        //{
-        //    Instantiate(bullet, firePoint.position, Quaternion.identity).Damage = BulletDamage;
-        //}
     }
 }

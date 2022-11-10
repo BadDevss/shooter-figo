@@ -23,16 +23,24 @@ public class Bullet : MonoBehaviour
         Invoke("AutoDestroy", autoDestroyTimer);
     }
 
+    private void Update()
+    {
+        Vector3 currentScale = transform.localScale;
+        currentScale.x += 0.005f;
+        currentScale.y += 0.005f;
+        transform.localScale = currentScale;
+    }
+
     private void AutoDestroy()
     {
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        ITakeDamage damagedObject = collision.gameObject.GetComponent<ITakeDamage>();
+        ITakeDamage damagedObject = other.gameObject.GetComponent<ITakeDamage>();
 
-        if(damagedObject != null)
+        if (damagedObject != null)
         {
             //the bullet hit something that can take damage
             damagedObject.TakeDamage(Damage);

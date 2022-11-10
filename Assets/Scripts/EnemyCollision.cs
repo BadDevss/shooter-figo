@@ -7,6 +7,7 @@ public class EnemyCollision : MonoBehaviour
     private Transform _playerTransform;
     [SerializeField] private Transform pivot;
     private bool _isDestroying = false;
+    [SerializeField] private GameObject[] explosions;
 
     private void Awake()
     {
@@ -20,8 +21,8 @@ public class EnemyCollision : MonoBehaviour
 
         float xAngle = 0f;
 
-        if(dir.y > 0)
-            xAngle = Mathf.Atan2(dir.y, -dir.z) * Mathf.Rad2Deg;
+        //if(dir.y > 0)
+        //    xAngle = Mathf.Atan2(dir.y, -dir.z) * Mathf.Rad2Deg;
 
         localRotation.x = xAngle;
         transform.localEulerAngles = localRotation;
@@ -39,9 +40,11 @@ public class EnemyCollision : MonoBehaviour
 
     private IEnumerator AutoDestroyCor()
     {
-        GetComponentInParent<SpriteRenderer>().sortingOrder = 10;
+        GetComponentInParent<SpriteRenderer>().sortingOrder = 100;      
         yield return new WaitForSeconds(0.2f);
+        Instantiate(explosions[Random.Range(0, 2)], pivot.position, Quaternion.identity);
         Destroy(transform.parent.gameObject);
+        yield return null;
     }
 
 }

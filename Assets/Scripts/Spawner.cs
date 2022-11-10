@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject rightEnemy;
 
     [SerializeField] private float spawnRate = 3f;
+    [SerializeField] private float enemySpeed;
     private Transform _spaceShipTransform;
     private Transform _playerTransform;
     private float _elapsedSpawnTime = 0f;
@@ -105,7 +106,7 @@ public class Spawner : MonoBehaviour
         GameObject enemySpawned = Instantiate(enemy, randomPoint.position, Quaternion.identity);
         //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
 
-        enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+        enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
 
         //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
         //enemySpawned.transform.SetParent(playerTransform);
@@ -118,7 +119,7 @@ public class Spawner : MonoBehaviour
         GameObject enemySpawned = Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
         //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
 
-        enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+        enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
 
         //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
         //enemySpawned.transform.SetParent(playerTransform);
