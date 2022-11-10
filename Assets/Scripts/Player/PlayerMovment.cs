@@ -24,6 +24,8 @@ public class PlayerMovment : MonoBehaviour
 
     [SerializeField] private Transform spaceShip;
 
+    public float ForwardSpeed { get => forwardSpeed * movmentSpeed; }
+
     private Animator _spaceShiptAnim;
 
     private void Awake()

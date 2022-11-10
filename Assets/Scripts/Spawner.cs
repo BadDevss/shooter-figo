@@ -81,7 +81,8 @@ public class Spawner : MonoBehaviour
     {
         Transform randomPoint = possiblePoints[Random.Range(0, possiblePoints.Length)];
         GameObject enemySpawned = Instantiate(enemy, randomPoint.position, Quaternion.identity);
-        enemySpawned.transform.SetParent(playerTransform);
+        enemySpawned.GetComponent<BaseEnemy>().Speed = playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+        //enemySpawned.transform.SetParent(playerTransform);
     }
 
     private void SpawnEnemy(Transform[] possiblePoints, GameObject[] enemies)
@@ -89,7 +90,8 @@ public class Spawner : MonoBehaviour
         Transform randomPoint = possiblePoints[Random.Range(0, possiblePoints.Length)];
         GameObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
         GameObject enemySpawned = Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
-        enemySpawned.transform.SetParent(playerTransform);
+        enemySpawned.GetComponent<BaseEnemy>().Speed = playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
+        //enemySpawned.transform.SetParent(playerTransform);
     }
 
     //private void SpawnEnemy(Transform[] possiblePoints, BaseEnemy[] enemies)
