@@ -56,9 +56,7 @@ public class PlayerMovment : MonoBehaviour
             Vector3 angles = spaceShip.localEulerAngles;
             angles.z = 0f;
             spaceShip.localEulerAngles = angles;
-        }
-
-        _spaceShiptAnim.SetFloat("yDir", fixedDir.y);
+        }     
 
         if (transform.position.x >= maxHorizzontalffset && fixedDir.x > 0.1f)
         {
@@ -79,6 +77,8 @@ public class PlayerMovment : MonoBehaviour
         {
             fixedDir.y = 0f;
         }
+
+        _spaceShiptAnim.SetFloat("yDir", fixedDir.y);
 
         _playerRigidbody.velocity = fixedDir * movmentSpeed;
     }
