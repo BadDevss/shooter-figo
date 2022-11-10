@@ -234,6 +234,7 @@ MonoBehaviour:
   explosions:
   - {fileID: 8063377753990001475, guid: 1a5333e962b391b44b120d23ef7fb50d, type: 3}
   - {fileID: 6828698479187233956, guid: 14147e6466432b043b1936cb263a433b, type: 3}
+  pivot: {fileID: 5931033042079056946}
 --- !u!54 &3719795404356622736
 Rigidbody:
   m_ObjectHideFlags: 0

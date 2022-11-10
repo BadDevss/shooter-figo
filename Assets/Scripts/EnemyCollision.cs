@@ -16,16 +16,16 @@ public class EnemyCollision : MonoBehaviour
 
     private void Update()
     {
-        Vector3 localRotation = pivot.localEulerAngles;
-        Vector3 dir = _playerTransform.position - pivot.position;
+        //Vector3 localRotation = pivot.localEulerAngles;
+        //Vector3 dir = _playerTransform.position - pivot.position;
 
-        float xAngle = 0f;
+        //float xAngle = 0f;
 
-        //if(dir.y > 0)
-        //    xAngle = Mathf.Atan2(dir.y, -dir.z) * Mathf.Rad2Deg;
+        ////if(dir.y > 0)
+        ////    xAngle = Mathf.Atan2(dir.y, -dir.z) * Mathf.Rad2Deg;
 
-        localRotation.x = xAngle;
-        transform.localEulerAngles = localRotation;
+        //localRotation.x = xAngle;
+        //transform.localEulerAngles = localRotation;
     }
 
     private void OnTriggerEnter(Collider other)

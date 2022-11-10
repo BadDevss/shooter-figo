@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour, ITakeDamage
 {
-    private Rigidbody _enemyRb;
+    protected Rigidbody _enemyRb;
 
     [SerializeField] private int damage;
 
@@ -16,48 +16,57 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     public float Speed { get; set; }
 
 
-    //private Transform _playerTransform;
-    //private Transform _colliderTransform;
+    protected Transform _playerTransform;
+    [SerializeField] private Transform pivot;
+    private bool _isDestroying = false;
+    //[SerializeField] private GameObject[] explosions;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _enemyRb = GetComponent<Rigidbody>();
-        //_playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        //_colliderTransform = GetComponentInChildren<Transform>();
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         _enemyRb.velocity = Vector3.forward * Speed;
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected virtual void Update()
     {
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    //collision.gameObject.GetComponent<ITakeDamage>().TakeDamage(damage);
-        //    Instantiate(explosions[Random.Range(0, 2)], transform.position, Quaternion.identity);
-        //    Destroy(gameObject);
-        //}
+        if( (transform.position - _playerTransform.position).z <= -5f)
+        {
+            Destroy(gameObject);
+        }
     }
-
-    //protected virtual void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        //collision.gameObject.GetComponent<ITakeDamage>().TakeDamage(damage);
-    //        Instantiate(explosions[Random.Range(0, 2)], transform.position, Quaternion.identity);
-    //        Destroy(gameObject);
-    //    }
-    //}
 
     public void TakeDamage(int damage)
     {
         health -= damage;
         if(health <= 0)
         {
-            Instantiate(explosions[Random.Range(0, 2)], transform.position, Quaternion.identity);
+            Instantiate(explosions[Random.Range(0, 2)], pivot.position, Quaternion.identity);
             Destroy(gameObject);
         }
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && !_isDestroying)
+        {
+            _isDestroying = true;
+            StartCoroutine(AutoDestroyCor());
+            Debug.Log("PROCA TROIAAAAAAAAAAAAAAA");
+        }
+    }
+
+    protected virtual IEnumerator AutoDestroyCor()
+    {
+        GetComponentInParent<SpriteRenderer>().sortingOrder = 100;
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(explosions[Random.Range(0, 2)], pivot.position, Quaternion.identity);
+        //Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
+        yield return null;
     }
 }
