@@ -34,6 +34,7 @@ public class PlayerShoot : MonoBehaviour
         if(_playerInputs.IsFiring && _timeElapsed <= 0f)
         {
             shootType.Fire(firePoitns);
+            AudioSource.PlayClipAtPoint(AudioManager.Instance.BulletSfx, transform.position);
             _timeElapsed = fireRate;
         }
     }
