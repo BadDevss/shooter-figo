@@ -13,6 +13,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     [SerializeField] private int health;
 
+    [SerializeField] private int points;
+
     [SerializeField] private GameObject[] explosions;
 
     public float Speed { get; set; }
@@ -21,7 +23,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     protected Transform _playerTransform;
     [SerializeField] private Transform pivot;
     private bool _isDestroying = false;
-    //[SerializeField] private GameObject[] explosions;
+
+    public System.Action<int> OnEnemyDeath;
 
     protected virtual void Awake()
     {
@@ -40,9 +43,6 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         {
             Destroy(gameObject);
         }
-
-
-
     }
 
     public void TakeDamage(int damage)
@@ -51,6 +51,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         if(health <= 0)
         {
             Instantiate(explosions[Random.Range(0, 2)], pivot.position, Quaternion.identity);
+            OnEnemyDeath?.Invoke(points);
             Destroy(gameObject);
         }
     }
@@ -59,9 +60,10 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     {
         if (other.gameObject.CompareTag("Player") && !_isDestroying)
         {
-            _isDestroying = true;
-            StartCoroutine(AutoDestroyCor());
             Debug.Log("PROCA TROIAAAAAAAAAAAAAAA");
+            _isDestroying = true;
+            other.gameObject.GetComponent<ITakeDamage>().TakeDamage(Damage);
+            StartCoroutine(AutoDestroyCor());      
         }
     }
 

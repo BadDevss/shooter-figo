@@ -26,6 +26,8 @@ public class Spawner : MonoBehaviour
     private int _lastColumnIndex = -1;
     private float _zOffSet;
 
+    public System.Action<int> OnScoreAdded;
+
     private void Awake()
     {
         _spaceShipTransform = GameObject.FindGameObjectWithTag("SpaceShip").transform;      
@@ -107,6 +109,7 @@ public class Spawner : MonoBehaviour
         //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
 
         enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
+        enemySpawned.GetComponent<BaseEnemy>().OnEnemyDeath += TriggerScoreEvent;
 
         //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
         //enemySpawned.transform.SetParent(playerTransform);
@@ -120,6 +123,7 @@ public class Spawner : MonoBehaviour
         //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
 
         enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
+        enemySpawned.GetComponent<BaseEnemy>().OnEnemyDeath += TriggerScoreEvent;
 
         //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
         //enemySpawned.transform.SetParent(playerTransform);
@@ -131,5 +135,10 @@ public class Spawner : MonoBehaviour
     //    BaseEnemy randomEnemy = enemies[Random.Range(0, enemies.Length)];
     //    Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
     //}
+
+    private void TriggerScoreEvent(int scoreToAdd)
+    {
+        OnScoreAdded?.Invoke(scoreToAdd);
+    }
 
 }
