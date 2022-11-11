@@ -32,6 +32,12 @@ public class Spawner : MonoBehaviour
     {
         _spaceShipTransform = GameObject.FindGameObjectWithTag("SpaceShip").transform;      
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        _playerTransform.GetComponent<PlayerHealth>().OnPlayerDeath += PlayerDeath;
+    }
+
+    private void PlayerDeath()
+    {
+        Destroy(gameObject);
     }
 
     private void Start()

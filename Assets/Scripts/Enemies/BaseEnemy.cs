@@ -30,6 +30,13 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     {
         _enemyRb = GetComponent<Rigidbody>();
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath += PlayerDeath;
+    }
+
+    private void PlayerDeath()
+    {       
+        Instantiate(explosions[Random.Range(0, 2)], pivot.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     protected virtual void Start()
@@ -41,6 +48,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     {
         if( (transform.position - _playerTransform.position).z <= -5f)
         {
+            _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath -= PlayerDeath;
             Destroy(gameObject);
         }
     }
@@ -52,6 +60,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         {
             Instantiate(explosions[Random.Range(0, 2)], pivot.position, Quaternion.identity);
             OnEnemyDeath?.Invoke(points);
+            _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath -= PlayerDeath;
             Destroy(gameObject);
         }
     }
@@ -73,6 +82,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         yield return new WaitForSeconds(0.2f);
         Instantiate(explosions[Random.Range(0, 2)], pivot.position + new Vector3(0f,0f,3f), Quaternion.identity);
         //Destroy(transform.parent.gameObject);
+        _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath -= PlayerDeath;
         Destroy(gameObject);
         yield return null;
     }
