@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
     }
 
     public void PlayGame()
@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
         rendbg1.enabled = true;
         rendbg2.enabled = true;
         Instantiate(ActorPrefab, ActorPosition, Quaternion.identity);
-        Invoke("ChangeScene", 8f);
+        Invoke("ChangeScene", 0);
 
     }
     
