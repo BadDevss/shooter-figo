@@ -6,7 +6,8 @@ public class AutoDestroy : MonoBehaviour
 {
     public void PlaySoundAnim()
     {
-        AudioSource.PlayClipAtPoint(AudioManager.Instance.ExplosionSfx, transform.position);
+        //AudioSource.PlayClipAtPoint(AudioManager.Instance.ExplosionSfx, transform.position);
+        AudioManager.Instance.PlayClip(AudioManager.Instance.ExplosionSfx, gameObject);
     }
     public void DestroyAnim()
     {

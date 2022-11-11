@@ -1166,6 +1166,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5069507512749895659, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
+      propertyPath: spawnRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5069507512749895661, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
       propertyPath: m_Name
       value: SpawnerFixed
@@ -1286,6 +1290,14 @@ PrefabInstance:
     - target: {fileID: 1622913185341797867, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}
       propertyPath: m_Name
       value: PlayerFixed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204189524124219245, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}
+      propertyPath: forwardSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204189524124219245, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}
+      propertyPath: movmentSpeed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8204189525534914415, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}
       propertyPath: m_Enabled

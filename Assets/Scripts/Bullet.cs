@@ -12,6 +12,8 @@ public class Bullet : MonoBehaviour
 
     public int Damage { get; set; }
 
+    public float PlayerSpeed { get; set; }
+
     private void Awake()
     {
         _bulletRb = GetComponent<Rigidbody>();
@@ -19,6 +21,8 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        bulletSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>().ForwardSpeed + bulletSpeed;
+
         _bulletRb.velocity = Vector3.forward * bulletSpeed;
         Invoke("AutoDestroy", autoDestroyTimer);
     }

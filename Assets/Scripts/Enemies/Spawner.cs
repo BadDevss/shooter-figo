@@ -117,7 +117,8 @@ public class Spawner : MonoBehaviour
         enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
         enemySpawned.GetComponent<BaseEnemy>().OnEnemyDeath += TriggerScoreEvent;
 
-        AudioSource.PlayClipAtPoint(AudioManager.Instance.SpawnSfx, _spaceShipTransform.position);
+        //AudioSource.PlayClipAtPoint(AudioManager.Instance.SpawnSfx, _spaceShipTransform.position);
+        AudioManager.Instance.PlayClip(AudioManager.Instance.SpawnSfx, enemySpawned);
 
         //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
         //enemySpawned.transform.SetParent(playerTransform);
@@ -132,9 +133,6 @@ public class Spawner : MonoBehaviour
 
         enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
         enemySpawned.GetComponent<BaseEnemy>().OnEnemyDeath += TriggerScoreEvent;
-
-        AudioSource.PlayClipAtPoint(AudioManager.Instance.SpawnSfx, _spaceShipTransform.position );
-        
 
         //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
         //enemySpawned.transform.SetParent(playerTransform);

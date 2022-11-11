@@ -28,4 +28,23 @@ public class AudioManager : MonoBehaviour
             Destroy(this);
         }
     }
+
+    public void PlayClip(AudioClip clipToPlay, GameObject objectWithSound, float volume = 1f)
+    {
+        AudioSource objectSource = objectWithSound.GetComponent<AudioSource>();
+        if (objectSource == null)
+        {
+            objectSource = objectWithSound.AddComponent<AudioSource>();
+            objectSource.spatialBlend = 0;
+            objectSource.clip = clipToPlay;
+            objectSource.volume = volume;
+            objectSource.Play();
+        }
+        else
+        {
+            objectSource.volume = volume;
+            objectSource.clip = clipToPlay;
+            objectSource.Play();
+        }
+    }
 }
