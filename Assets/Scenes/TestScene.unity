@@ -623,6 +623,8 @@ MonoBehaviour:
   laserSfx: {fileID: 8300000, guid: caec73155b7fd254e82b15ab1d9ce795, type: 3}
   explosionSfx: {fileID: 8300000, guid: 9429177dc4fb6f9429c722c6a1a29199, type: 3}
   spawnSfx: {fileID: 8300000, guid: f37073c690f6c444d9001c520ac3d281, type: 3}
+  windSfx: {fileID: 8300000, guid: d80c21e3f7c46df43a3809f8c3c22ff6, type: 3}
+  engineDownSfx: {fileID: 8300000, guid: f4db41e172f42894d8e01c33d3151edd, type: 3}
 --- !u!4 &982816309
 Transform:
   m_ObjectHideFlags: 0
@@ -1167,12 +1169,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5069507512749895659, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
+      propertyPath: maxTime
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069507512749895659, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
+      propertyPath: spawnRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069507512749895659, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
+      propertyPath: enemySpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069507512749895659, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
+      propertyPath: enemiesStats
+      value: 
+      objectReference: {fileID: 11400000, guid: b1e5ded45c89eff41931ddb4c163ba41, type: 2}
+    - target: {fileID: 5069507512749895659, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
+      propertyPath: maxSpawnRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069507512749895659, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
       propertyPath: timeBeforeUpgrade
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5069507512749895659, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
       propertyPath: multiplierTimeUpgrade
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5069507512749895661, guid: ed40aefa678519945a970f1e354dbdf2, type: 3}
       propertyPath: m_Name
@@ -1234,18 +1256,6 @@ PrefabInstance:
     - target: {fileID: 1622913185341797867, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}
       propertyPath: m_Name
       value: PlayerFixed
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204189524124219245, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}
-      propertyPath: forwardSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204189524124219245, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}
-      propertyPath: movmentSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204189525534914415, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c44d02be4f631a345a78e60ed0ca0b7d, type: 3}

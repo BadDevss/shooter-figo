@@ -20,7 +20,7 @@ public class VerticalEnemy : BaseEnemy
     protected override void Start()
     {
         dir = Random.Range(1, 3) % 2 == 0 ? 1 : -1;
-        _speed = 15f * Speed / 23f;
+        _speed = 8f * SpeedMagnetude / 23f;
     }
 
     protected override void Update()
@@ -40,6 +40,6 @@ public class VerticalEnemy : BaseEnemy
     public override void UpgradeEnemey(EnemiesUpgrade enemiesUpgrade)
     {       
         base.UpgradeEnemey(enemiesUpgrade);
-        _speed = 15f * Speed / 23f;
+        _speed = 8f * SpeedMagnetude / 23f;
     }
 }

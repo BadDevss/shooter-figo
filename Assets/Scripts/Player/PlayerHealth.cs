@@ -39,7 +39,28 @@ public class PlayerHealth : MonoBehaviour, ITakeDamage
         GetComponent<PlayerMovment>().enabled = false;
         GetComponent<PlayerShoot>().enabled = false;
         GetComponent<cameraHorizon>().enabled = false;
-        GameObject.FindGameObjectWithTag("SpaceShip").SetActive(false);
+
+        AudioSource audioSource = GameObject.FindGameObjectWithTag("SpaceShip").GetComponent<AudioSource>();
+        audioSource.clip = AudioManager.Instance.EngineDownSfx;
+        audioSource.priority = 256;
+        audioSource.loop = false;
+        audioSource.Play();
+
+        GameObject.FindGameObjectWithTag("SpaceShip").GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    private IEnumerator DecrementPitchCor()
+    {
+        AudioSource audioSource = GameObject.FindGameObjectWithTag("SpaceShip").GetComponent<AudioSource>();
+
+        while(audioSource.pitch > -2f)
+        {
+            audioSource.pitch -= 0.1f;
+            Debug.Log(audioSource.pitch);
+            yield return new WaitForSeconds(0.5f);
+        }
+        audioSource.enabled = false;
+        yield break;
     }
 
     private IEnumerator TakeDamageCor()

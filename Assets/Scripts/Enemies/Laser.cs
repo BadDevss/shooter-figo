@@ -7,6 +7,11 @@ public class Laser : MonoBehaviour
     [SerializeField] private GameObject[] explosions;
     private bool _isDestroying = false;
 
+    public void PLayLaserSoundAnim()
+    {
+        AudioManager.Instance.PlayClip(AudioManager.Instance.LaserSfx, gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && !_isDestroying)

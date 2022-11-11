@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [SerializeField] private AudioClip bulletSfx, laserSfx, explosionSfx, spawnSfx;
+    [SerializeField] private AudioClip bulletSfx, laserSfx, explosionSfx, spawnSfx, windSfx, engineDownSfx;
 
     public AudioClip BulletSfx { get => bulletSfx; }
 
@@ -15,6 +15,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip ExplosionSfx { get => explosionSfx; }
 
     public AudioClip SpawnSfx { get => spawnSfx; }
+
+    public AudioClip WindSfx { get => windSfx; }
+     public AudioClip EngineDownSfx { get => engineDownSfx; }
 
     private void Awake()
     {

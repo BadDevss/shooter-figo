@@ -166,14 +166,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd72133be1e1e964a85775f6fbb7f348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  health: 30
+  damage: 1
+  health: 2
   points: 0
   explosions:
   - {fileID: 8063377753990001475, guid: 1a5333e962b391b44b120d23ef7fb50d, type: 3}
   - {fileID: 6828698479187233956, guid: 14147e6466432b043b1936cb263a433b, type: 3}
   pivot: {fileID: 3624164065259738231}
   hitMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  enemiesStats: {fileID: 11400000, guid: b1e5ded45c89eff41931ddb4c163ba41, type: 2}
 --- !u!54 &5395553669674779657
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f603783644beca45aa2ee7b580e809a, type: 3}
-  m_Name: Shoot1
+  m_Script: {fileID: 11500000, guid: f2535c61c0d3e994d983cccc4db3bb87, type: 3}
+  m_Name: Enemies stats
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1948923194429677659, guid: dfe4214dc2ec7b24db3d7cb64205bac7, type: 3}
-  bulletsToFire: 2
-  bulletDamage: 1

@@ -19,6 +19,9 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     public float Speed { get; set; }
 
+    public float SpeedMagnetude { get; set; }
+
+    public float MaxEnemySpeed { get; set; }
 
     protected Transform _playerTransform;
     [SerializeField] private Transform pivot;
@@ -28,6 +31,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     public System.Action<int> OnEnemyDeath;
 
+    [SerializeField] private EnemiesStats enemiesStats;
     protected virtual void Awake()
     {
         _enemyRb = GetComponent<Rigidbody>();
@@ -53,12 +57,13 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     protected virtual void Start()
     {
+        Init();
         _enemyRb.velocity = Vector3.forward * Speed;
     }
 
     protected virtual void Update()
     {
-        //Debug.Log(_enemyRb.velocity.z);
+        //Debug.Log( $"z velocity: {_enemyRb.velocity.z}, Speed: {Speed}" );
         if ( (transform.position - _playerTransform.position).z <= -5f)
         {
             _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath -= PlayerDeath;
@@ -111,7 +116,18 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     public virtual void UpgradeEnemey(EnemiesUpgrade enemiesUpgrade)
     {
         health += enemiesUpgrade.HealthToAdd;
-        damage += enemiesUpgrade.DamageToAdd;
-        Speed += enemiesUpgrade.SpeedToAdd;
+
+        Speed = Speed - Speed * enemiesUpgrade.SpeedPercentageToAdd > MaxEnemySpeed ? MaxEnemySpeed : Speed - Speed * enemiesUpgrade.SpeedPercentageToAdd;
+
+        _enemyRb.velocity = Vector3.forward * Speed;
+    }
+
+    protected virtual void Init()
+    {
+        health += enemiesStats.HealthToAdd;
+
+        //Speed = Speed - Speed * enemiesStats.SpeedPercentageToAdd > MaxEnemySpeed ? MaxEnemySpeed : Speed - Speed * enemiesStats.SpeedPercentageToAdd;
+
+        //_enemyRb.velocity = Vector3.forward * Speed;
     }
 }

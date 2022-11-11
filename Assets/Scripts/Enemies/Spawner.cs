@@ -21,6 +21,14 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float enemySpeed;
     [SerializeField] private float timeBeforeUpgrade;
     [SerializeField] private float multiplierTimeUpgrade = 1f;
+    [SerializeField] private float maxTime = 120f;
+    [SerializeField] private float healthPercentageUpgrade = 0.2f;
+    [SerializeField] private float speedPercentageUpgrade = 0.1f;
+    [SerializeField] private float spawnRateUpgrade = 0.02f;
+    [SerializeField] private float maxSpawnRate = 0.2f;
+    [SerializeField] private float maxEnemySpeed = 35f;
+    [SerializeField] private EnemiesStats enemiesStats;
+
     private float _elapsedUpgradeTime = 0f;
     private Transform _spaceShipTransform;
     private Transform _playerTransform;
@@ -70,6 +78,22 @@ public class Spawner : MonoBehaviour
         {
             Debug.Log("Increment enemies");
             timeBeforeUpgrade *= multiplierTimeUpgrade;
+
+            EnemiesUpgrade enemiesUpgrade = new EnemiesUpgrade() { HealthToAdd = 1, SpeedPercentageToAdd = 0.2f };
+            enemiesStats.HealthToAdd += enemiesUpgrade.HealthToAdd;
+            //enemiesStats.SpeedPercentageToAdd = 0.2f;
+            OnEnemiesUpgrade?.Invoke(enemiesUpgrade);
+
+            spawnRate = spawnRate - spawnRateUpgrade < maxSpawnRate ? maxSpawnRate : spawnRate - spawnRateUpgrade;
+            enemySpeed = enemySpeed + enemySpeed * speedPercentageUpgrade >= 35 ? 35 : enemySpeed + enemySpeed * speedPercentageUpgrade;
+
+            if (timeBeforeUpgrade >= maxTime)
+            {
+                timeBeforeUpgrade = maxTime;
+                Debug.Log("Set max time: " + timeBeforeUpgrade);
+            }
+                
+
             _elapsedUpgradeTime = timeBeforeUpgrade;
         }
     }
@@ -124,13 +148,12 @@ public class Spawner : MonoBehaviour
         //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
 
         enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
+        enemySpawned.GetComponent<BaseEnemy>().SpeedMagnetude = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed + enemySpeed;
+        enemySpawned.GetComponent<BaseEnemy>().MaxEnemySpeed = maxEnemySpeed;
         enemySpawned.GetComponent<BaseEnemy>().OnEnemyDeath += TriggerScoreEvent;
 
         //AudioSource.PlayClipAtPoint(AudioManager.Instance.SpawnSfx, _spaceShipTransform.position);
         AudioManager.Instance.PlayClip(AudioManager.Instance.SpawnSfx, enemySpawned);
-
-        //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
-        //enemySpawned.transform.SetParent(playerTransform);
     }
 
     private void SpawnEnemy(Transform[] possiblePoints, GameObject[] enemies)
@@ -141,19 +164,10 @@ public class Spawner : MonoBehaviour
         //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
 
         enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
+        enemySpawned.GetComponent<BaseEnemy>().SpeedMagnetude = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed + enemySpeed;
+        enemySpawned.GetComponent<BaseEnemy>().MaxEnemySpeed = maxEnemySpeed;
         enemySpawned.GetComponent<BaseEnemy>().OnEnemyDeath += TriggerScoreEvent;
-
-        //enemySpawned.GetComponent<BaseEnemy>().PlayerRb = playerTransform.GetComponent<Rigidbody>();
-        //enemySpawned.transform.SetParent(playerTransform);
     }
-
-    //private void SpawnEnemy(Transform[] possiblePoints, BaseEnemy[] enemies)
-    //{
-    //    Transform randomPoint = possiblePoints[Random.Range(0, possiblePoints.Length)];
-    //    BaseEnemy randomEnemy = enemies[Random.Range(0, enemies.Length)];
-    //    Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
-    //}
-
     private void TriggerScoreEvent(int scoreToAdd)
     {
         OnScoreAdded?.Invoke(scoreToAdd);
