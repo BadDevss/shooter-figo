@@ -33,6 +33,12 @@ public class PlayerMovment : MonoBehaviour
         _playerInputs = GetComponent<IInput>();
         _playerRigidbody = GetComponent<Rigidbody>();
         _spaceShiptAnim = GetComponentInChildren<Animator>();
+        GetComponent<PlayerHealth>().OnPlayerDeath += PLayerDeath;
+    }
+
+    private void PLayerDeath()
+    {
+        _playerRigidbody.velocity = Vector3.forward * forwardSpeed * movmentSpeed;
     }
 
     private void FixedUpdate()
