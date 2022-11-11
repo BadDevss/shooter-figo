@@ -7,47 +7,78 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    public GameObject MenuGui;
+    private GameObject MenuGui;
     [SerializeField]
-    public GameObject OptionMenu;
+    public GameObject OptionGui;
     [SerializeField]
-    public GameObject ShopMenu; 
+    private GameObject RewardGui;
+    [SerializeField]
+    private GameObject CreditsGui;
+    [SerializeField]
+    private GameObject BackgroundCanvas; 
+    [SerializeField]
+    private GameObject ActorPrefab; 
+
+    new Vector3 ActorPosition = new Vector3(0.1f, 0.41f, -300); 
+
+    public SpriteRenderer rendbg1;
+    public SpriteRenderer rendbg2;
+
+
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
+    }
 
     public void PlayGame()
     {
-      SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        MenuGui.SetActive(false);
+        OptionGui.SetActive(false);
+        RewardGui.SetActive(false);
+        BackgroundCanvas.SetActive(false);
+        rendbg1.enabled = true;
+        rendbg2.enabled = true;
+        Instantiate(ActorPrefab, ActorPosition, Quaternion.identity);
+        Invoke("ChangeScene", 0);
+
     }
     
     public void Option()
     {
         MenuGui.SetActive(false); 
-        OptionMenu.SetActive(true);
+        OptionGui.SetActive(true);
     }
 
     public void Shop()
     {
         MenuGui.SetActive(false);
-        OptionMenu.SetActive(false);
-        ShopMenu.SetActive(true);
+        OptionGui.SetActive(false);
+        RewardGui.SetActive(true);
     }
 
 
     public void Credits()
     {
-        Debug.Log("ciao");
+        MenuGui.SetActive(false);
+        OptionGui.SetActive(false);
+        RewardGui.SetActive(false);
+        CreditsGui.SetActive(true);
+
     }
 
 
     public void QuitGame()
     {
-        Debug.Log("ciao");
+        Application.Quit(); 
     }
 
     void Start()
     {
-        OptionMenu.SetActive(false);
-        ShopMenu.SetActive(false); 
+        rendbg1.enabled = false;
+        rendbg2.enabled = false;
+        CreditsGui.SetActive(false);
+        OptionGui.SetActive(false);
+        RewardGui.SetActive(false);
+
     }
-
-
 }
