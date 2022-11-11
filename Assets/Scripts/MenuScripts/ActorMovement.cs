@@ -13,6 +13,6 @@ public class ActorMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward *50f * Time.deltaTime);
+        transform.Translate(Vector3.forward * 1 * Time.deltaTime);
     }
 }

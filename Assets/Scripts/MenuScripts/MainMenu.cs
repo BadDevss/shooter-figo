@@ -16,10 +16,15 @@ public class MainMenu : MonoBehaviour
     private GameObject CreditsGui;
     [SerializeField]
     private GameObject BackgroundCanvas; 
-    [SerializeField]
-    private GameObject ActorPrefab; 
 
-    new Vector3 ActorPosition = new Vector3(0.1f, 0.41f, -300); 
+    [SerializeField]
+    public AudioSource EngineSound; 
+    [SerializeField]
+    private GameObject ActorPrefab;
+    [SerializeField]
+    private Camera MainActorCamera;
+
+    Vector3 ActorPosition = new Vector3(0, 0, -15); 
 
     public SpriteRenderer rendbg1;
     public SpriteRenderer rendbg2;
@@ -39,7 +44,9 @@ public class MainMenu : MonoBehaviour
         rendbg1.enabled = true;
         rendbg2.enabled = true;
         Instantiate(ActorPrefab, ActorPosition, Quaternion.identity);
-        Invoke("ChangeScene", 0);
+        //EngineSound.Play();
+        Invoke("ChangeScene", 5f); 
+ 
 
     }
     
