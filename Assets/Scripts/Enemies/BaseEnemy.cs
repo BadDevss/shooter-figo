@@ -9,6 +9,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     [SerializeField] private int damage;
 
+    public int Damage { get => damage; }
+
     [SerializeField] private int health;
 
     [SerializeField] private GameObject[] explosions;
@@ -38,6 +40,9 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         {
             Destroy(gameObject);
         }
+
+
+
     }
 
     public void TakeDamage(int damage)

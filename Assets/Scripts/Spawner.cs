@@ -60,7 +60,7 @@ public class Spawner : MonoBehaviour
     private void Spawn()
     {
         int random = Random.Range(0,3);
-        
+
         if(random == 0)
         {
             //spawn right/left enemies
