@@ -59,7 +59,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        int random = Random.Range(0,3);
+        int random = Random.Range(0,9);
 
         if(random == 0)
         {

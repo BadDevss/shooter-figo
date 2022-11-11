@@ -69,7 +69,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     {
         GetComponentInParent<SpriteRenderer>().sortingOrder = 100;
         yield return new WaitForSeconds(0.2f);
-        Instantiate(explosions[Random.Range(0, 2)], pivot.position, Quaternion.identity);
+        Instantiate(explosions[Random.Range(0, 2)], pivot.position + new Vector3(0f,0f,3f), Quaternion.identity);
         //Destroy(transform.parent.gameObject);
         Destroy(gameObject);
         yield return null;

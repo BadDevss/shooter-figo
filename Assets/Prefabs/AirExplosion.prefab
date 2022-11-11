@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7051520175371643127}
   - component: {fileID: 8233687053994974624}
   - component: {fileID: 7783959441503396345}
+  - component: {fileID: 3058922390168781449}
   m_Layer: 0
   m_Name: AirExplosion
   m_TagString: Untagged
@@ -105,3 +106,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3058922390168781449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063377753990001475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e536f2da245974c9def19f544670c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
