@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private float spawnRate = 3f;
     [SerializeField] private float enemySpeed;
+    [SerializeField] private int enemyHealth = 2;
     [SerializeField] private float timeBeforeUpgrade;
     [SerializeField] private float multiplierTimeUpgrade = 1f;
     [SerializeField] private float maxTime = 120f;
@@ -84,6 +85,8 @@ public class Spawner : MonoBehaviour
             //enemiesStats.SpeedPercentageToAdd = 0.2f;
             OnEnemiesUpgrade?.Invoke(enemiesUpgrade);
 
+            enemyHealth += enemiesUpgrade.HealthToAdd;
+
             spawnRate = spawnRate - spawnRateUpgrade < maxSpawnRate ? maxSpawnRate : spawnRate - spawnRateUpgrade;
             enemySpeed = enemySpeed + enemySpeed * speedPercentageUpgrade >= 35 ? 35 : enemySpeed + enemySpeed * speedPercentageUpgrade;
 
@@ -147,10 +150,13 @@ public class Spawner : MonoBehaviour
         GameObject enemySpawned = Instantiate(enemy, randomPoint.position, Quaternion.identity);
         //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
 
-        enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
-        enemySpawned.GetComponent<BaseEnemy>().SpeedMagnetude = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed + enemySpeed;
-        enemySpawned.GetComponent<BaseEnemy>().MaxEnemySpeed = maxEnemySpeed;
-        enemySpawned.GetComponent<BaseEnemy>().OnEnemyDeath += TriggerScoreEvent;
+        BaseEnemy baseEnemy = enemySpawned.GetComponent<BaseEnemy>();
+
+        baseEnemy.Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
+        baseEnemy.SpeedMagnetude = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed + enemySpeed;
+        baseEnemy.MaxEnemySpeed = maxEnemySpeed;
+        baseEnemy.Health = enemyHealth;
+        baseEnemy.OnEnemyDeath += TriggerScoreEvent;
 
         //AudioSource.PlayClipAtPoint(AudioManager.Instance.SpawnSfx, _spaceShipTransform.position);
         AudioManager.Instance.PlayClip(AudioManager.Instance.SpawnSfx, enemySpawned);
@@ -163,10 +169,13 @@ public class Spawner : MonoBehaviour
         GameObject enemySpawned = Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
         //enemySpawned.GetComponent<BaseEnemy>().Speed = _spaceShipTransform.GetComponent<PlayerMovment>().ForwardSpeed - 1f;
 
-        enemySpawned.GetComponent<BaseEnemy>().Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
-        enemySpawned.GetComponent<BaseEnemy>().SpeedMagnetude = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed + enemySpeed;
-        enemySpawned.GetComponent<BaseEnemy>().MaxEnemySpeed = maxEnemySpeed;
-        enemySpawned.GetComponent<BaseEnemy>().OnEnemyDeath += TriggerScoreEvent;
+        BaseEnemy baseEnemy = enemySpawned.GetComponent<BaseEnemy>();
+
+        baseEnemy.Speed = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed - enemySpeed;
+        baseEnemy.SpeedMagnetude = _playerTransform.GetComponent<PlayerMovment>().ForwardSpeed + enemySpeed;
+        baseEnemy.MaxEnemySpeed = maxEnemySpeed;
+        baseEnemy.Health = enemyHealth;
+        baseEnemy.OnEnemyDeath += TriggerScoreEvent;
     }
     private void TriggerScoreEvent(int scoreToAdd)
     {

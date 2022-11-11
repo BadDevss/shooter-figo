@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour, ITakeDamage
 {
     [SerializeField] private int health;
     [SerializeField] private Material hitMaterial;
+    [SerializeField] private AudioSource engineSource;
     private Material _defaultMaterial;
     public System.Action<int> OnDamage;
     public System.Action OnPlayerDeath;
@@ -26,6 +27,13 @@ public class PlayerHealth : MonoBehaviour, ITakeDamage
             health = 0;
             OnDamage?.Invoke(health);
             OnPlayerDeath?.Invoke();
+
+            int previousHighScore = PlayerPrefs.GetInt("HighScore");
+            int currentScore = FindObjectOfType<ScoreUI>().PlayerScore;
+
+            if (currentScore > previousHighScore)
+                PlayerPrefs.SetInt("HighScore", currentScore);
+
             DeactiveScripts();
         }           
 
@@ -40,11 +48,15 @@ public class PlayerHealth : MonoBehaviour, ITakeDamage
         GetComponent<PlayerShoot>().enabled = false;
         GetComponent<cameraHorizon>().enabled = false;
 
-        AudioSource audioSource = GameObject.FindGameObjectWithTag("SpaceShip").GetComponent<AudioSource>();
-        audioSource.clip = AudioManager.Instance.EngineDownSfx;
-        audioSource.priority = 256;
-        audioSource.loop = false;
-        audioSource.Play();
+        //AudioSource audioSource = GameObject.FindGameObjectWithTag("SpaceShip").GetComponent<AudioSource>();
+        //audioSource.clip = AudioManager.Instance.EngineDownSfx;
+        //audioSource.priority = 256;
+        //audioSource.loop = false;
+        //audioSource.Play();
+        engineSource.clip = AudioManager.Instance.EngineDownSfx;
+        engineSource.priority = 256;
+        engineSource.loop = false;
+        engineSource.Play();
 
         GameObject.FindGameObjectWithTag("SpaceShip").GetComponent<SpriteRenderer>().enabled = false;
     }

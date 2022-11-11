@@ -15,6 +15,10 @@ public class OptionMenu : MonoBehaviour
     [SerializeField]
     private GameObject RewardGui;
 
+    [SerializeField] private Image onOffMusicImage;
+    [SerializeField] private Image onOffSfxImage;
+    [SerializeField] private Sprite audioOn, audioOff;
+
     public void GetBacktoMain()
     {
         MenuGui.SetActive(true);
@@ -25,9 +29,23 @@ public class OptionMenu : MonoBehaviour
 
     public void DisableMusic()
     {
+        if (onOffMusicImage.sprite == audioOn)
+            onOffMusicImage.sprite = audioOff;
+        else
+            onOffMusicImage.sprite = audioOn;
 
-
+        AudioManager.Instance.OffMusic = !AudioManager.Instance.OffMusic;
     } 
+
+    public void DisableSFX()
+    {
+        if (onOffSfxImage.sprite == audioOn)
+            onOffSfxImage.sprite = audioOff;
+        else
+            onOffSfxImage.sprite = audioOn;
+
+        AudioManager.Instance.OffSfx = !AudioManager.Instance.OffSfx;
+    }
 
     public void DisableFullScreen()
     {

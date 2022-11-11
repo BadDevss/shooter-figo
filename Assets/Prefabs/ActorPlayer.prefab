@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4733634617582402470}
   m_Layer: 0
   m_Name: ActorPlayer
-  m_TagString: Untagged
+  m_TagString: SceneSfx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,7 +175,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8300292662433419277}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8300292663397838914
 SpriteRenderer:

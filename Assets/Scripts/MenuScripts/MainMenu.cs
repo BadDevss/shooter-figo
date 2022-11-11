@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject MenuGui;
     [SerializeField]
-    public GameObject OptionGui;
+    private GameObject OptionGui;
     [SerializeField]
     private GameObject RewardGui;
     [SerializeField]
@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     private GameObject BackgroundCanvas; 
 
     [SerializeField]
-    public AudioSource EngineSound; 
+    private AudioSource EngineSound; 
     [SerializeField]
     private GameObject ActorPrefab;
     [SerializeField]
@@ -44,6 +44,8 @@ public class MainMenu : MonoBehaviour
         rendbg1.enabled = true;
         rendbg2.enabled = true;
         Instantiate(ActorPrefab, ActorPosition, Quaternion.identity);
+        AudioManager.Instance.DisableSfx();
+        AudioManager.Instance.DisableMusics();
         //EngineSound.Play();
         Invoke("ChangeScene", 5f); 
  

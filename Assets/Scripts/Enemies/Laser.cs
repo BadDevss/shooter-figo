@@ -16,7 +16,9 @@ public class Laser : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !_isDestroying)
         {
-            other.gameObject.GetComponent<ITakeDamage>().TakeDamage(GetComponent<BaseEnemy>().Damage);
+            ITakeDamage takeDamage = other.GetComponent<ITakeDamage>();
+            if(takeDamage != null)
+                takeDamage.TakeDamage(GetComponentInParent<BaseEnemy>().Damage);
             Instantiate(explosions[Random.Range(0, 2)], other.gameObject.transform.position, Quaternion.identity);
         }
     }

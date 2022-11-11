@@ -13,6 +13,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     [SerializeField] private int health;
 
+    public int Health { get => health; set => health = value; }
+
     [SerializeField] private int points;
 
     [SerializeField] private GameObject[] explosions;
@@ -124,7 +126,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     protected virtual void Init()
     {
-        health += enemiesStats.HealthToAdd;
+        //health += enemiesStats.HealthToAdd;
 
         //Speed = Speed - Speed * enemiesStats.SpeedPercentageToAdd > MaxEnemySpeed ? MaxEnemySpeed : Speed - Speed * enemiesStats.SpeedPercentageToAdd;
 
