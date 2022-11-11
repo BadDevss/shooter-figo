@@ -8,7 +8,8 @@ public class VerticalEnemy : BaseEnemy
 
     [SerializeField] private float maxVerticalHeight;
     [SerializeField] private float minVerticalHeight;
-    [SerializeField] private float speed;
+    //[SerializeField] private float speed;
+    private float _speed;
     private int dir = 1;
 
     //private void Awake()
@@ -19,6 +20,7 @@ public class VerticalEnemy : BaseEnemy
     protected override void Start()
     {
         dir = Random.Range(1, 3) % 2 == 0 ? 1 : -1;
+        _speed = 15f * Speed / 23f;
     }
 
     protected override void Update()
@@ -31,7 +33,13 @@ public class VerticalEnemy : BaseEnemy
             dir = 1;
 
         Vector3 vel = _enemyRb.velocity;
-        vel.y = speed * dir;
-        _enemyRb.velocity = vel;
+        vel.y = _speed * dir;
+        _enemyRb.velocity = vel;      
+    }
+
+    public override void UpgradeEnemey(EnemiesUpgrade enemiesUpgrade)
+    {       
+        base.UpgradeEnemey(enemiesUpgrade);
+        _speed = 15f * Speed / 23f;
     }
 }

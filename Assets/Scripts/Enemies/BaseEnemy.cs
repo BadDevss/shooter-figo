@@ -22,6 +22,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     protected Transform _playerTransform;
     [SerializeField] private Transform pivot;
+    [SerializeField] private Material hitMaterial;
+    private Material _defaultMaterial;
     private bool _isDestroying = false;
 
     public System.Action<int> OnEnemyDeath;
@@ -31,6 +33,16 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         _enemyRb = GetComponent<Rigidbody>();
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath += PlayerDeath;
+        FindObjectOfType<Spawner>().OnEnemiesUpgrade += UpgradeEnemey;
+        _defaultMaterial = GetComponent<SpriteRenderer>().material;
+    }
+
+    private void OnDestroy()
+    {
+        Spawner spawner = FindObjectOfType<Spawner>();
+        
+        if(spawner != null)
+            FindObjectOfType<Spawner>().OnEnemiesUpgrade -= UpgradeEnemey;
     }
 
     private void PlayerDeath()
@@ -46,7 +58,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
     protected virtual void Update()
     {
-        if( (transform.position - _playerTransform.position).z <= -5f)
+        //Debug.Log(_enemyRb.velocity.z);
+        if ( (transform.position - _playerTransform.position).z <= -5f)
         {
             _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath -= PlayerDeath;
             Destroy(gameObject);
@@ -56,6 +69,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     public void TakeDamage(int damage)
     {
         health -= damage;
+        StartCoroutine(TakeDamageCor());
         if(health <= 0)
         {
             Instantiate(explosions[Random.Range(0, 2)], pivot.position, Quaternion.identity);
@@ -63,6 +77,13 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
             _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath -= PlayerDeath;
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator TakeDamageCor()
+    {
+        GetComponent<SpriteRenderer>().material = hitMaterial;
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().material = _defaultMaterial;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -85,5 +106,12 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         _playerTransform.gameObject.GetComponent<PlayerHealth>().OnPlayerDeath -= PlayerDeath;
         Destroy(gameObject);
         yield return null;
+    }
+
+    public virtual void UpgradeEnemey(EnemiesUpgrade enemiesUpgrade)
+    {
+        health += enemiesUpgrade.HealthToAdd;
+        damage += enemiesUpgrade.DamageToAdd;
+        Speed += enemiesUpgrade.SpeedToAdd;
     }
 }

@@ -166,14 +166,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  health: 10
+  health: 30
+  points: 0
   explosions:
   - {fileID: 8063377753990001475, guid: 1a5333e962b391b44b120d23ef7fb50d, type: 3}
   - {fileID: 6828698479187233956, guid: 14147e6466432b043b1936cb263a433b, type: 3}
   pivot: {fileID: 5106157558286172928}
+  hitMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   maxVerticalHeight: 1.578776
   minVerticalHeight: -3.691224
-  speed: 10
 --- !u!54 &-6499153032901296998
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5,12 +5,20 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, ITakeDamage
 {
     [SerializeField] private int health;
+    [SerializeField] private Material hitMaterial;
+    private Material _defaultMaterial;
     public System.Action<int> OnDamage;
     public System.Action OnPlayerDeath;
+
+    private void Awake()
+    {
+        _defaultMaterial = GetComponentInChildren<SpriteRenderer>().material;
+    }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
+        StartCoroutine(TakeDamageCor());
 
         if (health <= 0)
         {
@@ -32,5 +40,12 @@ public class PlayerHealth : MonoBehaviour, ITakeDamage
         GetComponent<PlayerShoot>().enabled = false;
         GetComponent<cameraHorizon>().enabled = false;
         GameObject.FindGameObjectWithTag("SpaceShip").SetActive(false);
+    }
+
+    private IEnumerator TakeDamageCor()
+    {
+        GetComponentInChildren<SpriteRenderer>().material = hitMaterial;
+        yield return new WaitForSeconds(0.1f);
+        GetComponentInChildren<SpriteRenderer>().material = _defaultMaterial;
     }
 }

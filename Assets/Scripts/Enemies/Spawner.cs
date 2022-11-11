@@ -19,6 +19,9 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private float spawnRate = 3f;
     [SerializeField] private float enemySpeed;
+    [SerializeField] private float timeBeforeUpgrade;
+    [SerializeField] private float multiplierTimeUpgrade = 1f;
+    private float _elapsedUpgradeTime = 0f;
     private Transform _spaceShipTransform;
     private Transform _playerTransform;
     private float _elapsedSpawnTime = 0f;
@@ -27,6 +30,7 @@ public class Spawner : MonoBehaviour
     private float _zOffSet;
 
     public System.Action<int> OnScoreAdded;
+    public System.Action<EnemiesUpgrade> OnEnemiesUpgrade;
 
     private void Awake()
     {
@@ -43,15 +47,11 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         _zOffSet = Mathf.Abs((_spaceShipTransform.position - transform.position).z);
+        _elapsedUpgradeTime = timeBeforeUpgrade;
     }
 
     private void Update()
     {
-        //Vector3 oldPos = transform.position;
-        //oldPos.x = 0f;
-        //oldPos.y = 0f;
-        //transform.position = oldPos;
-
         Vector3 oldPos = transform.position;
         oldPos.z = _playerTransform.position.z + _zOffSet;
         transform.position = oldPos;
@@ -62,6 +62,15 @@ public class Spawner : MonoBehaviour
         {
             Spawn();
             _elapsedSpawnTime = spawnRate;
+        }
+
+        _elapsedUpgradeTime -= Time.deltaTime;
+
+        if(_elapsedUpgradeTime <= 0f)
+        {
+            Debug.Log("Increment enemies");
+            timeBeforeUpgrade *= multiplierTimeUpgrade;
+            _elapsedUpgradeTime = timeBeforeUpgrade;
         }
     }
 
